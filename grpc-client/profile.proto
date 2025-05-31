@@ -1,0 +1,44 @@
+syntax = "proto3";
+package profile;
+
+option go_package = "grpc-server/grpc";
+
+service ProfileService {
+  rpc GetProfile (ProfileRequest) returns (ProfileResponse);
+  rpc CreateProfile (CreateProfileRequest) returns (ProfileResponse);
+  rpc UpdateProfile (UpdateProfileRequest) returns (ProfileResponse);
+  rpc DeleteProfile (ProfileRequest) returns (DeleteProfileResponse);
+  rpc GetAllProfiles (EmptyRequest) returns (ProfileListResponse);
+}
+
+message ProfileRequest {
+  int32 id = 1;
+}
+
+message CreateProfileRequest {
+  string name = 1;
+  string email = 2;
+}
+
+message UpdateProfileRequest {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message ProfileResponse {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message DeleteProfileResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message EmptyRequest {}
+
+message ProfileListResponse {
+  repeated ProfileResponse profiles = 1;
+}

@@ -1,0 +1,58 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Query {
+  profile(id: Int!): Profile!
+  profiles: [Profile!]!
+  company(id: Int!): Company!
+  companies: [Company!]!
+}
+
+type Profile {
+  id: Int!
+  name: String!
+  email: String!
+  companyID: Int
+  company: Company
+}
+
+type Company {
+  id: Int!
+  name: String!
+  address: String!
+}
+
+input NewProfile {
+  name: String!
+  email: String!
+  companyID: Int
+}
+
+input UpdateProfile {
+  id: Int!
+  name: String!
+  email: String!
+  companyID: Int
+}
+
+input NewCompany {
+  name: String!
+  address: String!
+}
+
+input UpdateCompany {
+  id: Int!
+  name: String!
+  address: String!
+}
+
+type Mutation {
+  createProfile(input: NewProfile!): Profile!
+  updateProfile(input: UpdateProfile!): Profile!
+  deleteProfile(id: Int!): Boolean!
+  
+  createCompany(input: NewCompany!): Company!
+  updateCompany(input: UpdateCompany!): Company!
+  deleteCompany(id: Int!): Boolean!
+}
