@@ -6,8 +6,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
-  transfer_to_server:
-    needs: docker-build-and-push
+  transfer-to-server:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     steps:
